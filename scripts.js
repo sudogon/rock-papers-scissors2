@@ -54,7 +54,7 @@ function updatePlayerIcon(playerSelection) {
         var playerIconName = `fa-hand-rock`;
     } else if (playerSelection === "papel") {
         var playerIconName = `fa-hand-paper`;
-    } else {
+    } else if (playerSelection === "tesoura") {
         var playerIconName = `fa-hand-scissors`;
     }
     playerIcon.classList = `far ${playerIconName}`;
@@ -67,7 +67,7 @@ function updateComputerIcon(computerSelection) {
         var computerIconName = `fa-hand-rock`;
     } else if (computerSelection === "papel") {
         var computerIconName = `fa-hand-paper`;
-    } else {
+    } else if (computerSelection === "tesoura") {
         var computerIconName = `fa-hand-scissors`;
     }
     computerIcon.classList = `far ${computerIconName}`;
@@ -85,7 +85,7 @@ function updateScore (isWinner) {
 
         totalScore.textContent = `${playerScore} - ${computerScore}`;
         if (playerScore === 5) {
-            totalScore.textContent = `${playerScore} - ${computerScore} Você venceu! Pressione F5 para jogar de novo.`;
+            totalScore.textContent = `${playerScore} - ${computerScore} Você venceu!`;
             playerScore = 0;
             computerScore = 0;
         }
@@ -93,7 +93,7 @@ function updateScore (isWinner) {
         updateResult(result);
         totalScore.textContent = `${playerScore} - ${computerScore}`;
         if (computerScore === 5) {
-            totalScore.textContent = `${playerScore} - ${computerScore} Você perdeu. Pressione F5 para jogar de novo.`;
+            totalScore.textContent = `${playerScore} - ${computerScore} Você perdeu.`;
             playerScore = 0;
             computerScore = 0;
         }
