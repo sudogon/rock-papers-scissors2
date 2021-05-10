@@ -11,24 +11,28 @@
 
     <!-- alternatives-->
     <div id="alternatives">
-      <ul>
+      <div id="buttons">
+        <button class="btn" id="pedra-btn">
           <i class="far fa-hand-rock"></i>
+        </button>
+        <button class="btn" id="papel-btn">
           <i class="far fa-hand-paper"></i>
+        </button>
+        <button class="btn" id="tesoura-btn">
           <i class="far fa-hand-scissors"></i>
-      </ul>
+        </button>
+      </div>
     </div>
 
     <!-- choices-->
     <div id="round">
       <div id="titles">
-        <p>Jogador</p>
-        <p>Computador</p>
-      </div>
-
-      <div class="choices">
-        <!-- jogador -->
-        <i class="fas fa-times"></i>
-        <!-- computador -->
+        <p>Jogador Computador</p>
+        <div class="choices">
+          <i class="far fa-hand-rock" id="player-icon"></i>
+          <i class="fas fa-times"></i>
+          <i class="far fa-hand-rock" id="computer-icon"></i>
+        </div>
       </div>
     </div>
 
@@ -39,12 +43,7 @@
 
     <!-- scores-->
     <div id="scores">
-      
-    </div>
-
-    <!-- local score-->
-    <div id="local-record">
-      
+      <p class="end-game"></p>
     </div>
 
     <script src="scripts.js"></script>
