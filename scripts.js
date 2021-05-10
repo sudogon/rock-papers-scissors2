@@ -1,54 +1,55 @@
-const selections = ["pedra", "papel", "tesoura"];
-
 var playerScore = 0;
 var computerScore = 0;
 var isWinner = Boolean;
 
+const totalScore = document.getElementById("scores");
+const endGame = document.getElementById("end-game");
+
 const btns = document.querySelectorAll(".btn");
 btns.forEach((button) => button.addEventListener("click", playRound));
 
-// converte  pressionar o botao em uma string
-function convertBtn() {
-    let buttonId = e.target.id;
-    console.log(buttonId);
-    return buttonId.split("-")[0];
-}
-
-function computerPlay() {
-    let selections = ["pedra", "papel", "tesoura"];
-    return selections[Math.floor(Math.random() * selections.length)]; /*  */
-}
-
 function playRound(e) {
-    var playerSelection = convertBtn();
+    var playerSelection = convertBtn(e);
     var computerSelection = computerPlay();
 
-    updateChoices(playerSelection, computerSelection);
+    updatePlayerIcon(playerSelection);
+    updateComputerIcon(computerSelection);
 
     if (playerSelection === computerSelection) {
         result = 'É um empate!'
-        return isWinner = false;
+        isWinner = false;
+        return updateResult(result), updateScore(isWinner);
     } else if ((playerSelection === "pedra" && computerSelection === "tesoura") || 
             (playerSelection === "tesoura" && computerSelection === "papel") || 
             (playerSelection === "papel" && computerSelection === "pedra")) {
         playerScore++;
         result = `Você ganhou a rodada! ${playerSelection} vence ${computerSelection}.`;
-        return isWinner = true;
-        
+        isWinner = true;
+        return updateResult(result), updateScore(isWinner);
     } else if ((playerSelection === "tesoura" && computerSelection === "pedra") || 
             (playerSelection === "papel" && computerSelection === "tesoura") || 
             (playerSelection === "pedra" && computerSelection === "papel")) {
         computerScore++;
         result = `Você perdeu a rodada. ${playerSelection} perde para ${computerSelection}.`;
-        return isWinner = false;
+        isWinner = false;
+        return updateResult(result), updateScore(isWinner);
     }
 }
 
-function updateChoices(playerSelection, computerSelection) {
-    const playerIcon = document.getElementById("player-icon");
-    const computerIcon = document.getElementById("computer-icon");
+// converte pressionar o botao em uma string
+function convertBtn(e) {
+    let buttonId = e.target.id;
+    return buttonId.split("-")[0];
+}
 
-    playerIcon.classlist.add("active");
+function computerPlay() {
+    const selections = ["pedra", "papel", "tesoura"];
+    return selections[Math.floor(Math.random() * selections.length)];
+}
+
+function updatePlayerIcon(playerSelection) {
+    const playerIcon = document.getElementById("player-icon");
+
     if (playerSelection === "pedra") {
         var playerIconName = `fa-hand-rock`;
     } else if (playerSelection === "papel") {
@@ -57,8 +58,11 @@ function updateChoices(playerSelection, computerSelection) {
         var playerIconName = `fa-hand-scissors`;
     }
     playerIcon.classList = `far ${playerIconName}`;
+}
 
-    computerIcon.classlist.add("active");
+function updateComputerIcon(computerSelection) {
+    const computerIcon = document.getElementById("computer-icon");
+
     if (computerSelection === "pedra") {
         var computerIconName = `fa-hand-rock`;
     } else if (computerSelection === "papel") {
@@ -66,8 +70,9 @@ function updateChoices(playerSelection, computerSelection) {
     } else {
         var computerIconName = `fa-hand-scissors`;
     }
-    computerIcon.classlist = `far ${computerIconName}`;
+    computerIcon.classList = `far ${computerIconName}`;
 }
+
 
 function updateResult (result) {
     const roundResult = document.getElementById("result");
@@ -77,23 +82,20 @@ function updateResult (result) {
 function updateScore (isWinner) {
     if (isWinner === true) {
         updateResult(result);
-        
-        const totalScore = document.getElementById("scores");
-        const endGame = document.getElementById("end-game");
 
         totalScore.textContent = `${playerScore} - ${computerScore}`;
         if (playerScore === 5) {
-            endGame.textContent = (`Você venceu! Pressione F5 para jogar de novo.`);
+            totalScore.textContent = `${playerScore} - ${computerScore} Você venceu! Pressione F5 para jogar de novo.`;
+            playerScore = 0;
+            computerScore = 0;
         }
     } else {
         updateResult(result);
         totalScore.textContent = `${playerScore} - ${computerScore}`;
         if (computerScore === 5) {
-            endGame.textContent = (`Você perdeu. Pressione F5 para jogar de novo.`);
+            totalScore.textContent = `${playerScore} - ${computerScore} Você perdeu. Pressione F5 para jogar de novo.`;
+            playerScore = 0;
+            computerScore = 0;
         }
     }
 }
-
-playRound(e);
-updateResult(result);
-updateScore(isWinner);
