@@ -1,3 +1,30 @@
-div {
-    border-style: solid;
+body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center | space-evenly;
+    align-items: center;
+    padding: 12px;
+}
+
+.choices {
+    padding: 12px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#result {
+    padding: 12px;
+    text-align: center;
+
+}
+
+i {
+    text-align: center;
+    margin: 0 auto;
+    width: 36px;
+    height: 30px;
 }

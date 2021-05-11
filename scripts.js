@@ -16,22 +16,21 @@ function playRound(e) {
     updateComputerIcon(computerSelection);
 
     if (playerSelection === computerSelection) {
-        result = 'É um empate!'
+        result = 'É um empate!';
         isWinner = false;
         return updateResult(result), updateScore(isWinner);
     } else if ((playerSelection === "pedra" && computerSelection === "tesoura") || 
             (playerSelection === "tesoura" && computerSelection === "papel") || 
             (playerSelection === "papel" && computerSelection === "pedra")) {
         playerScore++;
-        result = `Você ganhou a rodada! ${playerSelection} vence ${computerSelection}.`;
+        result = 'Você ganhou a rodada!';
         isWinner = true;
         return updateResult(result), updateScore(isWinner);
     } else if ((playerSelection === "tesoura" && computerSelection === "pedra") || 
             (playerSelection === "papel" && computerSelection === "tesoura") || 
             (playerSelection === "pedra" && computerSelection === "papel")) {
         computerScore++;
-        result = `Você perdeu a rodada. ${playerSelection} perde para ${computerSelection}.`;
-        isWinner = false;
+        result = 'Você perdeu a rodada.';
         return updateResult(result), updateScore(isWinner);
     }
 }
@@ -64,7 +63,7 @@ function updatePlayerIcon(playerSelection) {
     } else if (playerSelection === "tesoura") {
         var playerIconName = `fa-hand-scissors`;
     }
-    playerIcon.classList = `far ${playerIconName}`;
+    playerIcon.classList = `far ${playerIconName} fa-2x`;
 }
 
 function updateComputerIcon(computerSelection) {
@@ -77,7 +76,7 @@ function updateComputerIcon(computerSelection) {
     } else if (computerSelection === "tesoura") {
         var computerIconName = `fa-hand-scissors`;
     }
-    computerIcon.classList = `far ${computerIconName}`;
+    computerIcon.classList = `far ${computerIconName} fa-2x`;
 }
 
 
@@ -91,15 +90,15 @@ function updateScore (isWinner) {
         updateResult(result);
 
         totalScore.textContent = `${playerScore} - ${computerScore}`;
-        if (playerScore === 5) {
-            totalScore.textContent = `${playerScore} - ${computerScore} Você venceu!`;
+        if (playerScore >= 5) {
+            totalScore.textContent = `Você venceu! ${playerScore} - ${computerScore}`;
             playerScore = 0;
             computerScore = 0;
         }
     } else {
         updateResult(result);
         totalScore.textContent = `${playerScore} - ${computerScore}`;
-        if (computerScore === 5) {
+        if (computerScore >= 5) {
             totalScore.textContent = `${playerScore} - ${computerScore} Você perdeu.`;
             playerScore = 0;
             computerScore = 0;
