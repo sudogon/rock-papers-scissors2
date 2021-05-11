@@ -38,9 +38,16 @@ function playRound(e) {
 
 // converte pressionar o botao em uma string
 function convertBtn(e) {
-    let buttonId = e.target.id;
+    let buttonId;
+  if (e.target.tagName.toLowerCase() === "i") {
+    buttonId = e.target.parentNode.id;
     return buttonId.split("-")[0];
+  } else {
+    buttonId = e.target.id;
+    return buttonId.split("-")[0];
+  }
 }
+
 
 function computerPlay() {
     const selections = ["pedra", "papel", "tesoura"];
